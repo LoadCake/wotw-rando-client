@@ -539,8 +539,6 @@ namespace RandomizerManaged {
     private static bool ShouldRevert(UberState uber_state, UberValue old) {
       if (NeedsNewGameInit || SkipListeners)
         return false;
-      if (uber_state.GroupID == 937 && uber_state.ID == 34641 && uber_state.Value.Int < old.Int)
-        return true;
       // questUberStateGroup.findKuQuest
       else if (uber_state.GroupID == 14019 && uber_state.ID == 34504 && uber_state.Value.Int < 4)
         return true;
@@ -553,14 +551,6 @@ namespace RandomizerManaged {
         UnsharableIds.Clear();
         InterOp.Messaging.clear_quest_messages();
         Randomizer.Log($"New Game Init - {SeedController.SeedName}", false);
-
-        foreach (UberState s in DefaultUberStates) { s.Write(); }
-        foreach (UberState s in Kuberstates) { s.Write(); }
-        foreach (UberState s in DialogAndRumors) { s.Write(); }
-
-        // Always remove cutscenes until logic has been written
-        foreach (UberState s in ShortCutscenes) { s.Write(); }
-        foreach (UberState s in LongCutscenes) { s.Write(); }
 
         InterOp.Map.discover_everything();
 

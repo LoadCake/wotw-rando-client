@@ -18,7 +18,7 @@ conan_cmake_configure(
         GENERATORS
             cmake_find_package
         OPTIONS
-            zeromq:encryption=None
+            zeromq:encryption=False
 )
 
 conan_cmake_autodetect(settings)
