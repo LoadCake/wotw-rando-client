@@ -4,6 +4,7 @@
 #include <Core/api/uber_states/uber_state_virtual.h>
 #include <Core/dev/timing.h>
 #include <Core/enums/uber_state.h>
+#include <Core/input/simulator.h>
 #include <Core/settings.h>
 #include <Modloader/app/methods/Moon/UberStateCollection.h>
 #include <Modloader/app/types/BooleanUberState.h>
@@ -407,6 +408,7 @@ namespace randomizer {
                 add_state<app::SerializedIntUberState>(UberStateGroup::LupoShop, "shardMapIconsCost", 41667, 0),
 
                 add_state<app::IntUberState>(UberStateGroup::Player, "currentMapArea", 51, static_cast<int>(GameArea::TOTAL)),
+                add_state<app::BooleanUberState>(UberStateGroup::Player, "inputLocked", 1000, static_cast<int>(GameArea::TOTAL)),
 
                 // Dash has special handling, see burrow_and_waterdash_without_dash.cpp
                 add_state<app::SerializedBooleanUberState>(UberStateGroup::Skills, "dash", static_cast<int>(app::AbilityType__Enum::DashNew), false),
