@@ -1,3 +1,4 @@
+#include <Core/api/game/game.h>
 #include <Core/api/game/player.h>
 #include <Randomizer/constants.h>
 
@@ -89,7 +90,9 @@ namespace {
         on_dash_changed_effect = core::reactivity::watch_effect()
             .effect({ dash_state })
             .after([]() {
-                core::api::game::player::ability(app::AbilityType__Enum::DashNew).set(dash_state.get<bool>());
+                if (core::api::game::in_game()) {
+                    core::api::game::player::ability(app::AbilityType__Enum::DashNew).set(dash_state.get<bool>());
+                }
             })
             .finalize();
     });
