@@ -383,6 +383,7 @@ namespace randomizer::game {
                 return;
             }
 
+            core::api::game::player::ability(app::AbilityType__Enum::SpiritMagnet).set(false);
             core::api::game::event_bus().trigger_event(GameEvent::NewGameInitialized, EventTiming::Before);
             core::api::game::event_bus().trigger_event(GameEvent::NewGameInitialized, EventTiming::After);
             on_new_game_late_initialization_handle = nullptr;
@@ -405,8 +406,6 @@ namespace randomizer::game {
             on_new_game_late_initialization_handle = core::api::game::event_bus().register_handler(GameEvent::FixedUpdate, EventTiming::After, on_new_game_late_initialization);
 
             GameStateMachine::SetToGame(game_state_machine);
-            core::api::game::player::ability(app::AbilityType__Enum::SpiritMagnet).set(false);
-
             core::api::game::player::snap_camera();
 
             if (handling_start) {
